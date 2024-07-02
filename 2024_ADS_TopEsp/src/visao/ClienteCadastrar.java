@@ -4,6 +4,12 @@
  */
 package visao;
 
+import controlador.ClienteDao;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.Cliente;
+
 /**
  *
  * @author aluno
@@ -222,23 +228,36 @@ public class ClienteCadastrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+
         
-        //1 - PEGAR OS DADOS DA INTERFACE VISUAL
-        String nome = jTextFieldNome.getText();
-        String cpfCnpj = jTextFieldCpfCnpj.getText();
-        String cep = jTextFieldCep.getText();
-        String endereco = jTextFieldEndereco.getText();
-        String bairro = jTextFieldBairro.getText();
-        String cidade = jTextFieldBairro.getText();
-        String uf = (String) jComboBoxUF.getSelectedItem(); //Usando cast
-        String tipoCliente = jComboBoxTipoCliente.getSelectedItem().toString();
-        
-        System.out.println(nome);
-        System.out.println(uf);
-        System.out.println(tipoCliente);
-        
-        //2 - Criar o objeto Cliente com os dados da interface
-        
+    
+            //1 - PEGAR OS DADOS DA INTERFACE VISUAL
+            String nome = jTextFieldNome.getText();
+            String cpfCnpj = jTextFieldCpfCnpj.getText();
+            String cep = jTextFieldCep.getText();
+            String endereco = jTextFieldEndereco.getText();
+            String bairro = jTextFieldBairro.getText();
+            String cidade = jTextFieldBairro.getText();
+            String uf = (String) jComboBoxUF.getSelectedItem(); //Usando cast
+            String tipoCliente = jComboBoxTipoCliente.getSelectedItem().toString();
+            if (tipoCliente.equals("Pessoa Fisica")) {
+                tipoCliente = "PF";
+            } else {
+                tipoCliente = "PJ";
+            }
+
+            //2 - Criar o objeto Cliente com os dados da interface
+            Cliente cliente = new Cliente();
+            cliente.setCpfcnpj(cpfCnpj);
+            cliente.setNome(nome);
+            cliente.setTipo(tipoCliente);
+            try{
+            ClienteDao clienteMethods = new ClienteDao();
+            clienteMethods.inserir(cliente);
+            JOptionPane.showMessageDialog(this, "Cliente Cadastrado");
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Cliente Falhou .\n" + ex.getMessage());
+            }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
