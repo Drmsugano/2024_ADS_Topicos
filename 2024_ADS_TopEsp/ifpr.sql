@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/04/2024 às 00:21
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 07/08/2024 às 02:04
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,6 +44,35 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Despejando dados para a tabela `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `nome`, `tipo`, `cpfcnpj`, `endereco`, `bairro`, `cidade`, `uf`, `cep`, `status`, `datacadastro`) VALUES
+(1, '5675675', 'PJ', '7567', NULL, NULL, NULL, NULL, NULL, 1, '2024-08-06 19:25:37'),
+(2, '32131231', 'PF', '2131', NULL, NULL, NULL, NULL, NULL, 1, '2024-08-06 19:29:31');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `datacadastro` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `datacadastro`) VALUES
+(1, 'Douglas', 'drmsugano@email.com', '[g, s, d, v, k, f, s, a]', '2024-08-06 20:22:57');
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -54,6 +83,12 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -61,7 +96,13 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

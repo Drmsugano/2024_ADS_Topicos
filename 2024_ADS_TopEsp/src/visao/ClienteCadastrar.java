@@ -240,7 +240,7 @@ public class ClienteCadastrar extends javax.swing.JFrame {
             String cidade = jTextFieldBairro.getText();
             String uf = (String) jComboBoxUF.getSelectedItem(); //Usando cast
             String tipoCliente = jComboBoxTipoCliente.getSelectedItem().toString();
-            if (tipoCliente.equals("Pessoa Fisica")) {
+            if (tipoCliente.equals("Pessoa Física")) {
                 tipoCliente = "PF";
             } else {
                 tipoCliente = "PJ";
