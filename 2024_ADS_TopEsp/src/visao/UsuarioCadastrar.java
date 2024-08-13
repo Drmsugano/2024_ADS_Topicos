@@ -52,6 +52,12 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
 
         jLabel4.setText("Senha:");
 
+        jpfSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpfSenhaActionPerformed(evt);
+            }
+        });
+
         jButtonCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/salvar.png"))); // NOI18N
         jButtonCadastrar.setText("Cadastrar");
         jButtonCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -128,15 +134,22 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
         Usuario user = new Usuario();
         user.setNome(jtfNome.getText());
         user.setEmail(jtfEmail.getText());
-        user.setSenha(Arrays.toString(jpfSenha.getPassword()));
+        user.setSenha(new String(jpfSenha.getPassword()));
         try{
             UsuarioDao usuarioMethods = new UsuarioDao();
             usuarioMethods.inserir(user);
             JOptionPane.showMessageDialog(this, "Usuario Cadastrado");
+            jtfNome.setText("");
+            jtfEmail.setText("");
+            jpfSenha.setText("");
             } catch (Exception ex){
                 JOptionPane.showMessageDialog(this, "Usuario Falhou .\n" + ex.getMessage());
             }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
+    private void jpfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpfSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpfSenhaActionPerformed
 
     /**
      * @param args the command line arguments

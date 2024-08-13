@@ -6,18 +6,21 @@ package controlador;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 import modelo.Usuario;
+
 public class UsuarioDao {
-     public int inserir (Usuario Obj) throws Exception {
-        int retorno;
+
+    public void inserir(Usuario Obj) throws Exception {
         String sql = "INSERT INTO usuario (nome,email,senha)" + "values(?,?,?)";
         Connection conexao = Conexao.getConexao();
-        try (PreparedStatement ps = conexao.prepareStatement(sql)){
+        try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setString(1, Obj.getNome());
             ps.setString(2, Obj.getEmail());
             ps.setString(3, Obj.getSenha());
-            retorno = ps.executeUpdate();
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            throw ex;
         }
-        return retorno;
     }
 }
