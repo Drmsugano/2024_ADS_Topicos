@@ -12,7 +12,7 @@ import modelo.Usuario;
 public class UsuarioDao {
 
     public void inserir(Usuario Obj) throws Exception {
-        String sql = "INSERT INTO usuario (nome,email,senha)" + "values(?,?,?)";
+        String sql = "INSERT INTO usuario (nome,email,senha) values(?,?,?)";
         Connection conexao = Conexao.getConexao();
         try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setString(1, Obj.getNome());
