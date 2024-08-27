@@ -45,7 +45,7 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
         btnAlterar = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jlbTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jlbTitulo.setText("Gerenciar Usuário");
