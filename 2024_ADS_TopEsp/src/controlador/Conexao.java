@@ -3,27 +3,19 @@ package controlador;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- * Classe de conexao usando o padrão de projetos Singleton O padrão Singleton
- * permite instanciar apenas uma única classe de Conexao no projeto inteiro.
- * Nunca haverá 2 conexões abertas no projeto
- *
- * @author Marcelo Rafael Borth
- */
 public class Conexao {
-
+    // Pdrão Singleton
+    
     private static Connection conexao;
-
-    /**
-     * Construtor privado
-     */
+    
+    //construtor privado de conexao
     private Conexao() throws Exception {
-        try {
+        try{
             String driver = "com.mysql.cj.jdbc.Driver";
             String url = "jdbc:mysql://127.0.0.1/ifpr";
             String usuario = "root";
             String senha = "";
-
+            
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, usuario, senha);
             conexao.setAutoCommit(true);
@@ -31,11 +23,19 @@ public class Conexao {
             throw e;
         }
     }
-
-    public static Connection getConexao() throws Exception {
-        if (conexao == null) {
+    
+    //metodo para instanciar
+    public static Connection getConexao() throws Exception{
+        if(conexao == null){
             new Conexao();
         }
         return conexao;
     }
+    
+    
+    public static void main(String[] args) throws Exception{
+        
+        System.out.println(Conexao.getConexao());
+    }
+    
 }
