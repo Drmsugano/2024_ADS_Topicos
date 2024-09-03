@@ -28,17 +28,18 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="145" max="32767" attributes="0"/>
                       <Component id="jbFechar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jbCadastrar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jlGrupo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtfGrupoUsuario" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="jtfCategoria" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -52,7 +53,7 @@
               <Component id="jLabel1" min="-2" pref="58" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtfGrupoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="115" max="32767" attributes="0"/>
@@ -77,10 +78,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlGrupo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Grupo de Usuario: "/>
+        <Property name="text" type="java.lang.String" value="Categoria:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfGrupoUsuario">
+    <Component class="javax.swing.JTextField" name="jtfCategoria">
     </Component>
     <Component class="javax.swing.JButton" name="jbCadastrar">
       <Properties>

@@ -49,6 +49,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(jmProduto);
 
         jmCategoriaProduto.setText("Categoria de Produto");
+        jmCategoriaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCategoriaProdutoActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmCategoriaProduto);
 
         jmUsuario.setText("Usuario");
@@ -60,6 +65,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(jmUsuario);
 
         jmGrupoUsuario.setText("Grupo de Usuario");
+        jmGrupoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmGrupoUsuarioActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmGrupoUsuario);
 
         jMenuBar1.add(jMenu1);
@@ -90,13 +100,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProdutoActionPerformed
         // TODO add your handling code here:
-        
+        new ProdutoGerenciar().setVisible(true);
     }//GEN-LAST:event_jmProdutoActionPerformed
 
     private void jmUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmUsuarioActionPerformed
         // TODO add your handling code here:
         new UsuarioGerenciar().setVisible(true);
     }//GEN-LAST:event_jmUsuarioActionPerformed
+
+    private void jmGrupoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGrupoUsuarioActionPerformed
+        // TODO add your handling code here:
+        new GrupoUsuarioGerenciar().setVisible(true);
+    }//GEN-LAST:event_jmGrupoUsuarioActionPerformed
+
+    private void jmCategoriaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCategoriaProdutoActionPerformed
+        // TODO add your handling code here:
+        new CategoriaProdutoGerenciar().setVisible(true);
+    }//GEN-LAST:event_jmCategoriaProdutoActionPerformed
 
     /**
      * @param args the command line arguments

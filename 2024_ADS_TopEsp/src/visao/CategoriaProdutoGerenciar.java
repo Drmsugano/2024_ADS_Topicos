@@ -4,44 +4,44 @@
  */
 package visao;
 
-import controlador.GrupoUsuarioDao;
+import controlador.ProdutoCategoriaDao;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.GrupoUsuario;
+import modelo.ProdutoCategoria;
 
 /**
  *
  * @author Douglas Sugano
  */
-public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
+public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
 
     /**
      * Creates new form GrupoUsuarioGerenciar
      */
-    public GrupoUsuarioGerenciar() {
+    public CategoriaProdutoGerenciar() {
         initComponents();
         jtfPesquisaKeyReleased(null);
     }
     private void cadastrar(){
-        GrupoUsuarioCadastrar g = new GrupoUsuarioCadastrar();
-        g.setVisible(true);
+        ProdutoCategoriaCadastrar pc = new ProdutoCategoriaCadastrar();
+        pc.setVisible(true);
     }
 
       private void jtfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {                                        
         String campoPesquisa = jtfPesquisar.getText();        
         
-        DefaultTableModel modelo = (DefaultTableModel) jtGrupo.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
         modelo.setNumRows(0); // limpa os campos
         
         try{
-            GrupoUsuarioDao dao = new GrupoUsuarioDao();
-            List<GrupoUsuario> lista = dao.buscar(campoPesquisa);
+           ProdutoCategoriaDao dao = new ProdutoCategoriaDao();
+            List<ProdutoCategoria> lista = dao.buscar(campoPesquisa);
             
-            for (GrupoUsuario usuario : lista){
+            for (ProdutoCategoria produtoCategoria : lista){
                 String[] linhadaTabela = {
-                    String.valueOf(usuario.getId()),
-                    usuario.getNomeGrupo()
+                    String.valueOf(produtoCategoria.getId()),
+                    produtoCategoria.getNomeCategoria()
                 };
                 modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
                 
@@ -64,7 +64,7 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtGrupo = new javax.swing.JTable();
+        jtCategoria = new javax.swing.JTable();
         jbCadastrar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
         jbAlterar = new javax.swing.JButton();
@@ -75,18 +75,18 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Grupo de Usuarios");
+        jLabel1.setText("Categoria De Produtos");
         jLabel1.setToolTipText("");
 
-        jtGrupo.setModel(new javax.swing.table.DefaultTableModel(
+        jtCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nome do Grupo"
+                "ID", "Nome da Categoria "
             }
         ));
-        jScrollPane1.setViewportView(jtGrupo);
+        jScrollPane1.setViewportView(jtCategoria);
 
         jbCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
         jbCadastrar.setText("Cadastrar");
@@ -175,20 +175,23 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GrupoUsuarioGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaProdutoGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GrupoUsuarioGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaProdutoGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GrupoUsuarioGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaProdutoGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GrupoUsuarioGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaProdutoGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GrupoUsuarioGerenciar().setVisible(true);
+                new CategoriaProdutoGerenciar().setVisible(true);
             }
         });
     }
@@ -200,7 +203,7 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
     private javax.swing.JButton jbCadastrar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JLabel jlPesquisa;
-    private javax.swing.JTable jtGrupo;
+    private javax.swing.JTable jtCategoria;
     private javax.swing.JTextField jtfPesquisar;
     // End of variables declaration//GEN-END:variables
 }

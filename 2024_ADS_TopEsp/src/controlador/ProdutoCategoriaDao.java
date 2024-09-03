@@ -3,27 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
-import java.sql.*;
-import java.util.List;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import modelo.GrupoUsuario;
-public class GrupoUsuarioDao {
-    public void inserir (GrupoUsuario obj) throws Exception{
-        String sql = "INSERT INTO usuario_grupo (nome) VALUES (?)";
+import java.util.List;
+import modelo.ProdutoCategoria;
+
+/**
+ *
+ * @author Aluno
+ */
+public class ProdutoCategoriaDao {
+    public void inserir (ProdutoCategoria obj) throws Exception{
+        String sql = "INSERT INTO produto_categoria (nome) VALUES (?)";
         Connection conn = Conexao.getConexao();
         try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setString(1, obj.getNomeGrupo());
+            ps.setString(1, obj.getNomeCategoria());
             ps.executeUpdate();
         }catch(Exception ex){
             throw ex;
         }
     }
     
-    public List<GrupoUsuario> buscar(String nome) throws Exception {
-        List<GrupoUsuario> lista = new ArrayList<>();
+    public List<ProdutoCategoria> buscar(String nome) throws Exception {
+        List<ProdutoCategoria> lista = new ArrayList<>();
 
-        String sql = "select * from usuario_grupo";
+        String sql = "select * from produto_categoria";
         sql += (!nome.equals("")) ? " where nome like ?" : "";
 
         Connection conexao = Conexao.getConexao();
@@ -36,10 +42,10 @@ public class GrupoUsuarioDao {
 
             try (java.sql.ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    GrupoUsuario u = new GrupoUsuario();
-                    u.setId(rs.getInt("id"));
-                    u.setNomeGrupo(rs.getString("nome"));
-                    lista.add(u);
+                    ProdutoCategoria pc = new ProdutoCategoria();
+                    pc.setId(rs.getInt("id"));
+                    pc.setNomeCategoria(rs.getString("nome"));
+                    lista.add(pc);
                 }
             }
 
