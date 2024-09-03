@@ -29,9 +29,9 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmProduto = new javax.swing.JMenuItem();
-        jmGrupoUsuario = new javax.swing.JMenuItem();
-        jmUsuario = new javax.swing.JMenuItem();
         jmCategoriaProduto = new javax.swing.JMenuItem();
+        jmUsuario = new javax.swing.JMenuItem();
+        jmGrupoUsuario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -48,8 +48,8 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jmProduto);
 
-        jmGrupoUsuario.setText("Grupo de Usuario");
-        jMenu1.add(jmGrupoUsuario);
+        jmCategoriaProduto.setText("Categoria de Produto");
+        jMenu1.add(jmCategoriaProduto);
 
         jmUsuario.setText("Usuario");
         jmUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -59,8 +59,8 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jmUsuario);
 
-        jmCategoriaProduto.setText("Categoria de Produto");
-        jMenu1.add(jmCategoriaProduto);
+        jmGrupoUsuario.setText("Grupo de Usuario");
+        jMenu1.add(jmGrupoUsuario);
 
         jMenuBar1.add(jMenu1);
 

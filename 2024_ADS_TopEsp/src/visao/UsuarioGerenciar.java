@@ -213,7 +213,7 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
                     String.valueOf(usuario.getId()),
                     usuario.getNome(),
                     usuario.getEmail(),
-                    ""
+                    usuario.getDataCadastro(),
                 };
                 modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
                 
@@ -225,7 +225,7 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
             
         } 
     }//GEN-LAST:event_jtfPesquisaKeyReleased
-
+ 
     /**
      * @param args the command line arguments
      */

@@ -17,9 +17,9 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmProdutoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmGrupoUsuario">
+            <MenuItem class="javax.swing.JMenuItem" name="jmCategoriaProduto">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Grupo de Usuario"/>
+                <Property name="text" type="java.lang.String" value="Categoria de Produto"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmUsuario">
@@ -30,9 +30,9 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmUsuarioActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmCategoriaProduto">
+            <MenuItem class="javax.swing.JMenuItem" name="jmGrupoUsuario">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Categoria de Produto"/>
+                <Property name="text" type="java.lang.String" value="Grupo de Usuario"/>
               </Properties>
             </MenuItem>
           </SubComponents>
