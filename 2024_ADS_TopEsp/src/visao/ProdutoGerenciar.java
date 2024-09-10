@@ -21,13 +21,13 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
      */
     public ProdutoGerenciar() {
         initComponents();
-        jtfPesquisarActionPerformed(null);
+        jtfPesquisarKeyReleased(null);
     }
 
     private void cadastrar() {
         ProdutoCadastrar p = new ProdutoCadastrar();
         p.setVisible(true);
-    }
+    }        // TODO add your handling code here:
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,6 +88,11 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
         jtfPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfPesquisarActionPerformed(evt);
+            }
+        });
+        jtfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfPesquisarKeyReleased(evt);
             }
         });
 
@@ -154,31 +159,7 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
     private void jtfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPesquisarActionPerformed
-        // TODO add your handling code here:
-           String campoPesquisa = jtfPesquisar.getText();        
-        
-        DefaultTableModel modelo = (DefaultTableModel) jtProdutos.getModel();
-        modelo.setNumRows(0); // limpa os campos
-        
-        try{
-           ProdutoDao dao = new ProdutoDao();
-            List<Produto> lista = dao.buscar(campoPesquisa);
-            for (Produto produto : lista){
-                String[] linhadaTabela = {
-                    String.valueOf(produto.getId()),
-                    produto.getNomeProduto(),
-                    produto.getUnidadeDeMedida(),
-                    String.valueOf(produto.getDataCadastro())
-                };
-                modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
-                
-            }
-            
-        } catch (Exception e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
-            
-        } 
+
     }//GEN-LAST:event_jtfPesquisarActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
@@ -188,6 +169,32 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void jtfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisarKeyReleased
+        // TODO add your handling code here:
+        String campoPesquisa = jtfPesquisar.getText();
+        DefaultTableModel modelo = (DefaultTableModel) jtProdutos.getModel();
+        modelo.setNumRows(0); // limpa os campos
+
+        try {
+            ProdutoDao dao = new ProdutoDao();
+            List<Produto> lista = dao.buscar(campoPesquisa);
+            for (Produto produto : lista) {
+                String[] linhadaTabela = {
+                    String.valueOf(produto.getId()),
+                    produto.getNomeProduto(),
+                    produto.getUnidadeDeMedida(),
+                    String.valueOf(produto.getDataCadastro())
+                };
+                modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
+
+        }
+    }//GEN-LAST:event_jtfPesquisarKeyReleased
 
     /**
      * @param args the command line arguments

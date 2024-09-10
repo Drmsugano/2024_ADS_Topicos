@@ -75,6 +75,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfNome">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>

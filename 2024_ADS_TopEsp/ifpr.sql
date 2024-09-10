@@ -30,7 +30,7 @@ USE `ifpr`;
 --
 
 CREATE TABLE `cliente` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nome` varchar(100) NOT NULL,
   `tipo` varchar(2) NOT NULL,
   `cpfcnpj` varchar(20) NOT NULL,
@@ -46,24 +46,6 @@ CREATE TABLE `cliente` (
 --
 -- Despejando dados para a tabela `cliente`
 --
-
--- ifpr.cliente definition
-
-CREATE TABLE `cliente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  `tipo` varchar(2) NOT NULL,
-  `cpfcnpj` varchar(20) NOT NULL,
-  `endereco` varchar(100) DEFAULT NULL,
-  `bairro` varchar(100) DEFAULT NULL,
-  `cidade` varchar(100) DEFAULT NULL,
-  `uf` varchar(2) DEFAULT NULL,
-  `cep` varchar(10) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1,
-  `datacadastro` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 -- ifpr.produto definition
 

@@ -199,8 +199,7 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void jtfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisaKeyReleased
-        String campoPesquisa = jtfPesquisa.getText();        
-        
+        String campoPesquisa = jtfPesquisa.getText();
         DefaultTableModel modelo = (DefaultTableModel) jtbUsuario.getModel();
         modelo.setNumRows(0); // limpa os campos
         

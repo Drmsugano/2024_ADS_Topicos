@@ -13,6 +13,7 @@ import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
+
 public class UsuarioCadastrar extends javax.swing.JFrame {
 
     /**
@@ -153,23 +154,27 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         // TODO add your handling code here:
         Usuario user = new Usuario();
         user.setNome(jtfNome.getText());
         user.setEmail(jtfEmail.getText());
         user.setSenha(new String(jpfSenha.getPassword()));
-        try{
-            UsuarioDao usuarioMethods = new UsuarioDao();
-            usuarioMethods.inserir(user);
-            JOptionPane.showMessageDialog(this, "Usuario Cadastrado");
-            jtfNome.setText("");
-            jtfEmail.setText("");
-            jpfSenha.setText("");
-            } catch (Exception ex){
+        if (user.getNome().isBlank() || user.getEmail().isBlank() || user.getSenha().isBlank()) {
+                JOptionPane.showMessageDialog(this, "Não pode ser nulo");
+        } else {
+            try {
+                UsuarioDao usuarioMethods = new UsuarioDao();
+                usuarioMethods.inserir(user);
+                JOptionPane.showMessageDialog(this, "Usuario Cadastrado");
+                jtfNome.setText("");
+                jtfEmail.setText("");
+                jpfSenha.setText("");
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Usuario Falhou .\n" + ex.getMessage());
             }
+        }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jpfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpfSenhaActionPerformed
@@ -180,10 +185,10 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultComboBoxModel comboModel = (DefaultComboBoxModel) jcbGrupo.getModel();
         comboModel.setSelectedItem(0);
-        try{
-            
-        } catch(Exception e){
-            
+        try {
+
+        } catch (Exception e) {
+
         }
     }//GEN-LAST:event_jcbGrupoActionPerformed
 

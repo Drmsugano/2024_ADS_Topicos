@@ -21,38 +21,14 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
      */
     public CategoriaProdutoGerenciar() {
         initComponents();
-        jtfPesquisaKeyReleased(null);
+        jtfPesquisarKeyReleased(null);
     }
-    private void cadastrar(){
+
+    private void cadastrar() {
         ProdutoCategoriaCadastrar pc = new ProdutoCategoriaCadastrar();
         pc.setVisible(true);
     }
 
-      private void jtfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {                                        
-        String campoPesquisa = jtfPesquisar.getText();        
-        
-        DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
-        modelo.setNumRows(0); // limpa os campos
-        
-        try{
-           ProdutoCategoriaDao dao = new ProdutoCategoriaDao();
-            List<ProdutoCategoria> lista = dao.buscar(campoPesquisa);
-            
-            for (ProdutoCategoria produtoCategoria : lista){
-                String[] linhadaTabela = {
-                    String.valueOf(produtoCategoria.getId()),
-                    produtoCategoria.getNomeCategoria()
-                };
-                modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
-                
-            }
-            
-        } catch (Exception e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
-            
-        } 
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,6 +80,12 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
         jbAlterar.setText("Alterar");
 
         jlPesquisa.setText("Pesquisar:");
+
+        jtfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfPesquisarKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,6 +139,30 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
         // TODO add your handling code here:
         cadastrar();
     }//GEN-LAST:event_jbCadastrarActionPerformed
+
+    private void jtfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisarKeyReleased
+        // TODO add your handling code here:
+         String campoPesquisa = jtfPesquisar.getText();
+        DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
+        modelo.setNumRows(0); // limpa os campos
+        try {
+            ProdutoCategoriaDao dao = new ProdutoCategoriaDao();
+            List<ProdutoCategoria> lista = dao.buscar(campoPesquisa);
+
+            for (ProdutoCategoria produtoCategoria : lista) {
+                String[] linhadaTabela = {
+                    String.valueOf(produtoCategoria.getId()),
+                    produtoCategoria.getNomeCategoria()
+                };
+                modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
+
+        }
+    }//GEN-LAST:event_jtfPesquisarKeyReleased
 
     /**
      * @param args the command line arguments

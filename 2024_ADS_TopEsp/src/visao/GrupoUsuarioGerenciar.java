@@ -21,37 +21,11 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
      */
     public GrupoUsuarioGerenciar() {
         initComponents();
-        jtfPesquisaKeyReleased(null);
+        jtfPesquisarKeyReleased(null);
     }
     private void cadastrar(){
         GrupoUsuarioCadastrar g = new GrupoUsuarioCadastrar();
         g.setVisible(true);
-    }
-
-      private void jtfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {                                        
-        String campoPesquisa = jtfPesquisar.getText();        
-        
-        DefaultTableModel modelo = (DefaultTableModel) jtGrupo.getModel();
-        modelo.setNumRows(0); // limpa os campos
-        
-        try{
-            GrupoUsuarioDao dao = new GrupoUsuarioDao();
-            List<GrupoUsuario> lista = dao.buscar(campoPesquisa);
-            
-            for (GrupoUsuario usuario : lista){
-                String[] linhadaTabela = {
-                    String.valueOf(usuario.getId()),
-                    usuario.getNomeGrupo()
-                };
-                modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
-                
-            }
-            
-        } catch (Exception e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
-            
-        } 
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,6 +79,17 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
 
         jlPesquisa.setText("Pesquisar:");
 
+        jtfPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfPesquisarActionPerformed(evt);
+            }
+        });
+        jtfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfPesquisarKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,6 +142,36 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
         // TODO add your handling code here:
         cadastrar();
     }//GEN-LAST:event_jbCadastrarActionPerformed
+
+    private void jtfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfPesquisarActionPerformed
+
+    private void jtfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisarKeyReleased
+        // TODO add your handling code here:
+        String campoPesquisa = jtfPesquisar.getText();
+        DefaultTableModel modelo = (DefaultTableModel) jtGrupo.getModel();
+        modelo.setNumRows(0); // limpa os campos
+        
+        try{
+            GrupoUsuarioDao dao = new GrupoUsuarioDao();
+            List<GrupoUsuario> lista = dao.buscar(campoPesquisa);
+            
+            for (GrupoUsuario usuario : lista){
+                String[] linhadaTabela = {
+                    String.valueOf(usuario.getId()),
+                    usuario.getNomeGrupo()
+                };
+                modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
+                
+            }
+            
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
+            
+        } 
+    }//GEN-LAST:event_jtfPesquisarKeyReleased
 
     /**
      * @param args the command line arguments

@@ -157,6 +157,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfPesquisar">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfPesquisarKeyReleased"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

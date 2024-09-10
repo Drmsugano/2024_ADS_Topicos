@@ -95,19 +95,22 @@ public class GrupoUsuarioCadastrar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
+
     private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed
         // TODO add your handling code here:
-        GrupoUsuario grupo = new GrupoUsuario();
+        GrupoUsuario grupo = new GrupoUsuario(); 
         grupo.setNomeGrupo(jtfGrupoUsuario.getText());
-        try{
-            GrupoUsuarioDao grupoMethods = new GrupoUsuarioDao();
-            grupoMethods.inserir(grupo);
-            JOptionPane.showMessageDialog(this, "Grupo Cadastrado");
-            jtfGrupoUsuario.setText("");     
-        }catch(Exception ex){
-             JOptionPane.showMessageDialog(this, "Usuario Falhou .\n" + ex.getMessage());
+        if (grupo.getNomeGrupo().isBlank()) {   
+            JOptionPane.showMessageDialog(this,"Não pode ser nulo");
+        } else{
+             try {
+                GrupoUsuarioDao grupoMethods = new GrupoUsuarioDao();
+                grupoMethods.inserir(grupo);
+                JOptionPane.showMessageDialog(this, "Grupo Cadastrado");
+                jtfGrupoUsuario.setText("");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Usuario Falhou .\n" + ex.getMessage());
+            }
         }
     }//GEN-LAST:event_jbCadastrarActionPerformed
 

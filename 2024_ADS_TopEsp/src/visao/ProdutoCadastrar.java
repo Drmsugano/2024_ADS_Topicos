@@ -45,6 +45,8 @@ public class ProdutoCadastrar extends javax.swing.JFrame {
 
         jLabel2.setText("Nome");
 
+        jtfNome.setToolTipText("");
+
         jLabel3.setText("Unidade de Medida");
 
         jbCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
@@ -98,14 +100,18 @@ public class ProdutoCadastrar extends javax.swing.JFrame {
         Produto produto = new Produto();
         produto.setNomeProduto(jtfNome.getText());
         produto.setUnidadeDeMedida(jtfUnidade.getText());
-        try{
-            ProdutoDao produtoMethods = new ProdutoDao();
-            produtoMethods.inserir(produto);
-            JOptionPane.showMessageDialog(this, "Produto Cadastrado");
-            jtfNome.setText("");
-            jtfUnidade.setText("");
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,"Cadastro de Produto Falhou \n" + ex.getMessage());
+        if (produto.getNomeProduto().isBlank() || produto.getUnidadeDeMedida().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Não pode ser nulo");
+        } else {
+            try {
+                ProdutoDao produtoMethods = new ProdutoDao();
+                produtoMethods.inserir(produto);
+                JOptionPane.showMessageDialog(this, "Produto Cadastrado");
+                jtfNome.setText("");
+                jtfUnidade.setText("");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Cadastro de Produto Falhou \n" + ex.getMessage());
+            }
         }
     }//GEN-LAST:event_jbCadastrarActionPerformed
 
