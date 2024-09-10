@@ -3,9 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Aluno/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/visao/UsuarioCadastrar.java</file>
-            <file>file:/C:/Users/Aluno/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/modelo/Usuario.java</file>
-            <file>file:/C:/Users/Aluno/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/controlador/UsuarioDao.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/visao/UsuarioCadastrar.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/visao/Principal.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/modelo/Produto.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/modelo/GrupoUsuario.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/visao/UsuarioGerenciar.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/visao/GrupoUsuarioGerenciar.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/modelo/ProdutoCategoria.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/modelo/Usuario.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/controlador/GrupoUsuarioDao.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/visao/ClienteCadastrar.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/visao/GrupoUsuarioCadastrar.java</file>
+            <file>file:/C:/Users/Douglas%20Sugano/Documents/2024_ADS_Topicos/2024_ADS_TopEsp/src/controlador/UsuarioDao.java</file>
         </group>
     </open-files>
 </project-private>

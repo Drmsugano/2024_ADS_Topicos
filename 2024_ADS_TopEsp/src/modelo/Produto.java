@@ -12,6 +12,15 @@ public class Produto {
     private int id;
     private String nomeProduto;
     private String unidadeDeMedida;
+    private String dataCadastro;
+
+    public String getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(String dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
 
     public int getId() {
         return id;
