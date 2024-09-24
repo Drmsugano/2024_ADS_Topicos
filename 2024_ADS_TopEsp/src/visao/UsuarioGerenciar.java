@@ -6,6 +6,8 @@ package visao;
 
 import controlador.UsuarioDao;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Usuario;
@@ -183,48 +185,68 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        int linhaSelecionado = jtbUsuario.getSelectedRow();
+        if (linhaSelecionado != -1) {
+            int opcao = JOptionPane.showConfirmDialog(this, "Confirmar Exclusão ?", "Excluir", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (opcao == JOptionPane.YES_OPTION) {
+
+                int id = Integer.parseInt(jtbUsuario.getModel().getValueAt(
+                        linhaSelecionado, 0).toString());
+                UsuarioDao dao = new UsuarioDao();
+                try {
+                    dao.excluir(id);
+                    JOptionPane.showMessageDialog(this, "Usuario Excluido");
+                    DefaultTableModel modelo = ((DefaultTableModel) jtbUsuario.getModel());
+                    modelo.removeRow(linhaSelecionado);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
+                }
+
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "Selecione um Registro para excluir");
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        
+
     }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private  void cadastrar(){
+    private void cadastrar() {
         UsuarioCadastrar uc = new UsuarioCadastrar();
         uc.setVisible(true);
     }
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        cadastrar();       
+        cadastrar();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void jtfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisaKeyReleased
         String campoPesquisa = jtfPesquisa.getText();
         DefaultTableModel modelo = (DefaultTableModel) jtbUsuario.getModel();
         modelo.setNumRows(0); // limpa os campos
-        
-        try{
+
+        try {
             UsuarioDao dao = new UsuarioDao();
             List<Usuario> lista = dao.buscar(campoPesquisa);
-            
-            for (Usuario usuario : lista){
+
+            for (Usuario usuario : lista) {
                 String[] linhadaTabela = {
                     String.valueOf(usuario.getId()),
                     usuario.getNome(),
                     usuario.getEmail(),
-                    usuario.getDataCadastro(),
-                };
+                    usuario.getDataCadastro(),};
                 modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
-                
+
             }
-            
-        } catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
-            
-        } 
+
+        }
     }//GEN-LAST:event_jtfPesquisaKeyReleased
- 
+
     /**
      * @param args the command line arguments
      */
