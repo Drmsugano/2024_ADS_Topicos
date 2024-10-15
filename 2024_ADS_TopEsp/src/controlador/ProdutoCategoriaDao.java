@@ -15,17 +15,18 @@ import modelo.ProdutoCategoria;
  * @author Aluno
  */
 public class ProdutoCategoriaDao {
-    public void inserir (ProdutoCategoria obj) throws Exception{
+
+    public void inserir(ProdutoCategoria obj) throws Exception {
         String sql = "INSERT INTO produto_categoria (nome) VALUES (?)";
         Connection conn = Conexao.getConexao();
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, obj.getNomeCategoria());
             ps.executeUpdate();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             throw ex;
         }
     }
-    
+
     public List<ProdutoCategoria> buscar(String nome) throws Exception {
         List<ProdutoCategoria> lista = new ArrayList<>();
 
@@ -53,5 +54,17 @@ public class ProdutoCategoriaDao {
             throw e;
         }
         return lista;
+    }
+
+    public void excluir(Integer id) throws Exception {
+        String sql = "DELETE FROM produto_categoria WHERE id = ?";
+        Connection conexao = Conexao.getConexao();
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception ex) {
+            throw ex;
+        }
     }
 }

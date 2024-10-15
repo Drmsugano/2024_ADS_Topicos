@@ -54,10 +54,11 @@ public class UsuarioDao {
         }
         return lista;
     }
-    public void excluir(Integer id) throws Exception{
+
+    public void excluir(Integer id) throws Exception {
         String sql = "DELETE FROM usuario WHERE id = ?";
-         Connection conexao = Conexao.getConexao();
-         try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+        Connection conexao = Conexao.getConexao();
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();

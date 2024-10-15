@@ -3,23 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
+
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.GrupoUsuario;
+
 public class GrupoUsuarioDao {
-    public void inserir (GrupoUsuario obj) throws Exception{
+
+    public void inserir(GrupoUsuario obj) throws Exception {
         String sql = "INSERT INTO usuario_grupo (nome) VALUES (?)";
         Connection conn = Conexao.getConexao();
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, obj.getNomeGrupo());
             ps.executeUpdate();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             throw ex;
         }
     }
-    
+
     public List<GrupoUsuario> buscar(String nome) throws Exception {
         List<GrupoUsuario> lista = new ArrayList<>();
 
@@ -47,5 +50,17 @@ public class GrupoUsuarioDao {
             throw e;
         }
         return lista;
+    }
+
+    public void excluir(Integer id) throws Exception {
+        String sql = "DELETE FROM usuario_grupo WHERE id = ?";
+        Connection conexao = Conexao.getConexao();
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception ex) {
+            throw ex;
+        }
     }
 }

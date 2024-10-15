@@ -15,18 +15,19 @@ import modelo.Produto;
  * @author Douglas Sugano
  */
 public class ProdutoDao {
-     public void inserir (Produto obj) throws Exception{
+
+    public void inserir(Produto obj) throws Exception {
         String sql = "INSERT INTO produto(nome,unidadeDeMedida) VALUES (?,?)";
         Connection conn = Conexao.getConexao();
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, obj.getNomeProduto());
             ps.setString(2, obj.getUnidadeDeMedida());
             ps.executeUpdate();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             throw ex;
         }
     }
-    
+
     public List<Produto> buscar(String nome) throws Exception {
         List<Produto> lista = new ArrayList<>();
 
@@ -57,5 +58,17 @@ public class ProdutoDao {
         }
         return lista;
     }
-    
+
+    public void excluir(Integer id) throws Exception {
+        String sql = "DELETE FROM produto WHERE id = ?";
+        Connection conexao = Conexao.getConexao();
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
 }

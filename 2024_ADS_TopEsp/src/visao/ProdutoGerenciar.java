@@ -168,6 +168,29 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // TODO add your handling code here:
+        int linhaSelecionado = jtProdutos.getSelectedRow();
+        if (linhaSelecionado != -1) {
+            int opcao = JOptionPane.showConfirmDialog(this, "Confirmar Exclusão ?", "Excluir", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (opcao == JOptionPane.YES_OPTION) {
+
+                int id = Integer.parseInt(jtProdutos.getModel().getValueAt(
+                        linhaSelecionado, 0).toString());
+                ProdutoDao dao = new ProdutoDao();
+                try {
+                    dao.excluir(id);
+                    JOptionPane.showMessageDialog(this, "Produto Excluido");
+                    DefaultTableModel modelo = ((DefaultTableModel) jtProdutos.getModel());
+                    modelo.removeRow(linhaSelecionado);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
+                }
+
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "Selecione um Registro para excluir");
+        }
+       
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jtfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisarKeyReleased

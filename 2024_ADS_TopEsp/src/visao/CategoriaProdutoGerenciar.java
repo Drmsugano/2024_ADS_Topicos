@@ -75,6 +75,11 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
 
         jbExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/excluir.png"))); // NOI18N
         jbExcluir.setText("Excluir");
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirActionPerformed(evt);
+            }
+        });
 
         jbAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
         jbAlterar.setText("Alterar");
@@ -163,6 +168,32 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jtfPesquisarKeyReleased
+
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        // TODO add your handling code here:
+         int linhaSelecionado = jtCategoria.getSelectedRow();
+        if (linhaSelecionado != -1) {
+            int opcao = JOptionPane.showConfirmDialog(this, "Confirmar Exclusão ?", "Excluir", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (opcao == JOptionPane.YES_OPTION) {
+
+                int id = Integer.parseInt(jtCategoria.getModel().getValueAt(
+                        linhaSelecionado, 0).toString());
+                ProdutoCategoriaDao dao = new ProdutoCategoriaDao();
+                try {
+                    dao.excluir(id);
+                    JOptionPane.showMessageDialog(this, "Categoria de Produto Excluido");
+                    DefaultTableModel modelo = ((DefaultTableModel) jtCategoria.getModel());
+                    modelo.removeRow(linhaSelecionado);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
+                }
+
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "Selecione um Registro para excluir");
+        }
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     /**
      * @param args the command line arguments

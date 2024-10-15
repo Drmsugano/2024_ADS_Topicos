@@ -23,10 +23,12 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
         initComponents();
         jtfPesquisarKeyReleased(null);
     }
-    private void cadastrar(){
+
+    private void cadastrar() {
         GrupoUsuarioCadastrar g = new GrupoUsuarioCadastrar();
         g.setVisible(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +75,11 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
 
         jbExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/excluir.png"))); // NOI18N
         jbExcluir.setText("Excluir");
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirActionPerformed(evt);
+            }
+        });
 
         jbAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
         jbAlterar.setText("Alterar");
@@ -152,26 +159,52 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
         String campoPesquisa = jtfPesquisar.getText();
         DefaultTableModel modelo = (DefaultTableModel) jtGrupo.getModel();
         modelo.setNumRows(0); // limpa os campos
-        
-        try{
+
+        try {
             GrupoUsuarioDao dao = new GrupoUsuarioDao();
             List<GrupoUsuario> lista = dao.buscar(campoPesquisa);
-            
-            for (GrupoUsuario usuario : lista){
+
+            for (GrupoUsuario usuario : lista) {
                 String[] linhadaTabela = {
                     String.valueOf(usuario.getId()),
                     usuario.getNomeGrupo()
                 };
                 modelo.addRow(linhadaTabela); // adiciona uma linha na tabela
-                
+
             }
-            
-        } catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
-            
-        } 
+
+        }
     }//GEN-LAST:event_jtfPesquisarKeyReleased
+
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        // TODO add your handling code here:
+        int linhaSelecionado = jtGrupo.getSelectedRow();
+        if (linhaSelecionado != -1) {
+            int opcao = JOptionPane.showConfirmDialog(this, "Confirmar Exclusão ?", "Excluir", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (opcao == JOptionPane.YES_OPTION) {
+
+                int id = Integer.parseInt(jtGrupo.getModel().getValueAt(
+                        linhaSelecionado, 0).toString());
+                GrupoUsuarioDao dao = new GrupoUsuarioDao();
+                try {
+                    dao.excluir(id);
+                    JOptionPane.showMessageDialog(this, "Grupo de Usuario Excluido");
+                    DefaultTableModel modelo = ((DefaultTableModel) jtGrupo.getModel());
+                    modelo.removeRow(linhaSelecionado);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Erro ao pesquisar: " + e.getMessage());
+                }
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um Registro para excluir");
+        }
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     /**
      * @param args the command line arguments
