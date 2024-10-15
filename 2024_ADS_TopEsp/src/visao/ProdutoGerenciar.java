@@ -187,10 +187,10 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
                 }
 
             }
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um Registro para excluir");
         }
-       
+
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jtfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisarKeyReleased

@@ -143,7 +143,7 @@ public class UsuarioCadastrar extends javax.swing.JFrame {
         user.setEmail(jtfEmail.getText());
         user.setSenha(new String(jpfSenha.getPassword()));
         if (user.getNome().isBlank() || user.getEmail().isBlank() || user.getSenha().isBlank()) {
-                JOptionPane.showMessageDialog(this, "Não pode ser nulo");
+            JOptionPane.showMessageDialog(this, "Não pode ser nulo");
         } else {
             try {
                 UsuarioDao usuarioMethods = new UsuarioDao();

@@ -147,7 +147,7 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
 
     private void jtfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisarKeyReleased
         // TODO add your handling code here:
-         String campoPesquisa = jtfPesquisar.getText();
+        String campoPesquisa = jtfPesquisar.getText();
         DefaultTableModel modelo = (DefaultTableModel) jtCategoria.getModel();
         modelo.setNumRows(0); // limpa os campos
         try {
@@ -171,7 +171,7 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // TODO add your handling code here:
-         int linhaSelecionado = jtCategoria.getSelectedRow();
+        int linhaSelecionado = jtCategoria.getSelectedRow();
         if (linhaSelecionado != -1) {
             int opcao = JOptionPane.showConfirmDialog(this, "Confirmar Exclusão ?", "Excluir", JOptionPane.YES_NO_CANCEL_OPTION);
             if (opcao == JOptionPane.YES_OPTION) {
@@ -190,7 +190,7 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
                 }
 
             }
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um Registro para excluir");
         }
     }//GEN-LAST:event_jbExcluirActionPerformed
