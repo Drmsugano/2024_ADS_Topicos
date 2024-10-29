@@ -25,7 +25,9 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
         initComponents();
         jtfPesquisaKeyReleased(null);
     }
-
+    public void atualizarTabela(){
+        jtfPesquisaKeyReleased(null);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +46,6 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
         jlbinformacoesAdicionais1 = new javax.swing.JLabel();
         jlbinformacoesAdicionais2 = new javax.swing.JLabel();
         btnExcluir = new javax.swing.JButton();
-        btnAlterar = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,9 +74,21 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtbUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbUsuarioMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jtbUsuario);
@@ -110,15 +123,6 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
             }
         });
 
-        btnAlterar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
-        btnAlterar.setText("Alterar");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
-            }
-        });
-
         btnNovo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
         btnNovo.setText("Novo");
@@ -147,8 +151,6 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAlterar)
-                        .addGap(18, 18, 18)
                         .addComponent(btnExcluir))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlbTitulo)
@@ -174,9 +176,7 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbinformacoesAdicionais2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnAlterar))
+                .addComponent(btnExcluir)
                 .addContainerGap())
         );
 
@@ -208,10 +208,6 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um Registro para excluir");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-
-    }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void cadastrar() {
         UsuarioCadastrar uc = new UsuarioCadastrar();
@@ -246,6 +242,20 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jtfPesquisaKeyReleased
+
+    private void jtbUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbUsuarioMouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2) {
+            int linhaSelecionada = jtbUsuario.getSelectedRow();
+            Integer id = Integer.parseInt(
+                    jtbUsuario.getModel().getValueAt(linhaSelecionada, 0).toString()
+            );
+            UsuarioAlterar form = new UsuarioAlterar();
+            form.setVisible(true);
+            form.linkUsuarioGerenciarForm = this;
+            form.mostrarUsuario(id);
+         }
+    }//GEN-LAST:event_jtbUsuarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -283,7 +293,6 @@ public class UsuarioGerenciar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JPanel jPanel1;
