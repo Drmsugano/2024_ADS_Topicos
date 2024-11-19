@@ -24,6 +24,11 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
         jtfPesquisarKeyReleased(null);
     }
 
+    
+    public void atualizarTabela() {
+         jtfPesquisarKeyReleased(null);
+    }
+    
     private void cadastrar() {
         ProdutoCadastrar p = new ProdutoCadastrar();
         p.setVisible(true);
@@ -59,7 +64,20 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
             new String [] {
                 "ID", "Nome", "Unidade de Medida", "Data de Cadastro"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtProdutosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtProdutos);
 
         jbAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
@@ -219,6 +237,20 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtfPesquisarKeyReleased
 
+    private void jtProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProdutosMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            int linhaSelecionada = jtProdutos.getSelectedRow();
+            Integer id = Integer.parseInt(
+                    jtProdutos.getModel().getValueAt(linhaSelecionada, 0).toString()
+            );
+            ProdutoAlterar form = new ProdutoAlterar();
+            form.setVisible(true);
+            form.linkProdutoGerenciarForm = this;
+            form.mostrarProduto(id);
+         }
+    }//GEN-LAST:event_jtProdutosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -264,4 +296,5 @@ public class ProdutoGerenciar extends javax.swing.JFrame {
     private javax.swing.JTable jtProdutos;
     private javax.swing.JTextField jtfPesquisar;
     // End of variables declaration//GEN-END:variables
+
 }

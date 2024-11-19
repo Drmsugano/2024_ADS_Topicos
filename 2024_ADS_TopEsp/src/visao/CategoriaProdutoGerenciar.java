@@ -24,6 +24,10 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
         jtfPesquisarKeyReleased(null);
     }
 
+    public void atualizarTabela() {
+         jtfPesquisarKeyReleased(null);
+    }
+    
     private void cadastrar() {
         ProdutoCategoriaCadastrar pc = new ProdutoCategoriaCadastrar();
         pc.setVisible(true);
@@ -61,7 +65,20 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
             new String [] {
                 "ID", "Nome da Categoria "
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtCategoriaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtCategoria);
 
         jbCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
@@ -194,6 +211,20 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um Registro para excluir");
         }
     }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void jtCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtCategoriaMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            int linhaSelecionada = jtCategoria.getSelectedRow();
+            Integer id = Integer.parseInt(
+                    jtCategoria.getModel().getValueAt(linhaSelecionada, 0).toString()
+            );
+            CategoriaProdutoAlterar form = new CategoriaProdutoAlterar();
+            form.setVisible(true);
+            form.linkCategoriaProdutoGerenciarForm = this;
+            form.mostrarCategoriaProduto(id);
+         }
+    }//GEN-LAST:event_jtCategoriaMouseClicked
 
     /**
      * @param args the command line arguments
