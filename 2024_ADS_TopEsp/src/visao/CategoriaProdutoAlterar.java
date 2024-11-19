@@ -22,6 +22,7 @@ public class CategoriaProdutoAlterar extends javax.swing.JFrame {
      */
     public CategoriaProdutoAlterar() {
         initComponents();
+        jtId.setEditable(false);
     }
     
     public void mostrarCategoriaProduto(Integer id){

@@ -52,6 +52,39 @@ public class GrupoUsuarioDao {
         return lista;
     }
 
+      public GrupoUsuario getGrupoUsuario(int id) throws Exception {
+        Connection conexao = Conexao.getConexao();
+        String sql = "select * from  usuario_grupo where id = ?";
+
+        GrupoUsuario obj = null;
+
+        try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setInt(1, id);
+
+            try ( java.sql.ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    obj = new GrupoUsuario();
+                    obj.setId(rs.getInt("id"));
+                    obj.setNomeGrupo(rs.getString("nome"));
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return obj;
+    }
+         public boolean atualizar(GrupoUsuario g) throws Exception {
+        String sql = "update usuario_grupo"
+                + " set nome   = ?"
+                + " where id     = ?";
+
+        Connection conexao = Conexao.getConexao();
+        try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setString(1, g.getNomeGrupo());
+            ps.setInt(2, g.getId());
+            return ps.executeUpdate() == 1;
+        }
+    }
     public void excluir(Integer id) throws Exception {
         String sql = "DELETE FROM usuario_grupo WHERE id = ?";
         Connection conexao = Conexao.getConexao();

@@ -47,7 +47,6 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
         jtCategoria = new javax.swing.JTable();
         jbCadastrar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
-        jbAlterar = new javax.swing.JButton();
         jlPesquisa = new javax.swing.JLabel();
         jtfPesquisar = new javax.swing.JTextField();
 
@@ -98,9 +97,6 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
             }
         });
 
-        jbAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
-        jbAlterar.setText("Alterar");
-
         jlPesquisa.setText("Pesquisar:");
 
         jtfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -117,13 +113,10 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 374, Short.MAX_VALUE)
+                        .addGap(0, 484, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbCadastrar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jbAlterar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbExcluir))))
+                            .addComponent(jbExcluir, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -147,9 +140,7 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbExcluir)
-                    .addComponent(jbAlterar))
+                .addComponent(jbExcluir)
                 .addContainerGap())
         );
 
@@ -267,7 +258,6 @@ public class CategoriaProdutoGerenciar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbCadastrar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JLabel jlPesquisa;

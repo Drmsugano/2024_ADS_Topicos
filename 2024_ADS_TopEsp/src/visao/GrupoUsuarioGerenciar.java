@@ -23,6 +23,10 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
         initComponents();
         jtfPesquisarKeyReleased(null);
     }
+    
+     public void atualizarTabela() {
+         jtfPesquisarKeyReleased(null);
+    }
 
     private void cadastrar() {
         GrupoUsuarioCadastrar g = new GrupoUsuarioCadastrar();
@@ -43,7 +47,6 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
         jtGrupo = new javax.swing.JTable();
         jbCadastrar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
-        jbAlterar = new javax.swing.JButton();
         jlPesquisa = new javax.swing.JLabel();
         jtfPesquisar = new javax.swing.JTextField();
 
@@ -61,7 +64,20 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
             new String [] {
                 "ID", "Nome do Grupo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtGrupo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtGrupoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtGrupo);
 
         jbCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
@@ -80,9 +96,6 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
                 jbExcluirActionPerformed(evt);
             }
         });
-
-        jbAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
-        jbAlterar.setText("Alterar");
 
         jlPesquisa.setText("Pesquisar:");
 
@@ -105,13 +118,10 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 358, Short.MAX_VALUE)
+                        .addGap(0, 468, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbCadastrar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jbAlterar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbExcluir))))
+                            .addComponent(jbExcluir, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -135,9 +145,7 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbExcluir)
-                    .addComponent(jbAlterar))
+                .addComponent(jbExcluir)
                 .addContainerGap())
         );
 
@@ -206,6 +214,20 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbExcluirActionPerformed
 
+    private void jtGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtGrupoMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            int linhaSelecionada = jtGrupo.getSelectedRow();
+            Integer id = Integer.parseInt(
+                    jtGrupo.getModel().getValueAt(linhaSelecionada, 0).toString()
+            );
+            GrupoUsuarioAlterar form = new GrupoUsuarioAlterar();
+            form.setVisible(true);
+            form.linkGrupoUsuarioGerenciarForm = this;
+            form.mostrarGrupoUsuario(id);
+         }
+    }//GEN-LAST:event_jtGrupoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -244,7 +266,6 @@ public class GrupoUsuarioGerenciar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbCadastrar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JLabel jlPesquisa;
