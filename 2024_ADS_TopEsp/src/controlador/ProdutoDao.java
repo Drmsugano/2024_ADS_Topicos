@@ -70,5 +70,45 @@ public class ProdutoDao {
             throw ex;
         }
     }
+    
+        public Produto getProduto(int id) throws Exception {
+        Connection conexao = Conexao.getConexao();
+        String sql = "select * from produto where id = ?";
+
+        Produto obj = null;
+
+        try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setInt(1, id);
+
+            try ( java.sql.ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    obj = new Produto();
+                    obj.setId(rs.getInt("id"));
+                    obj.setNomeProduto(rs.getString("nome"));
+                    obj.setUnidadeDeMedida(rs.getString("unidadeDeMedida"));
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return obj;
+    }
+
+    public boolean atualizar(Produto p) throws Exception {
+        String sql = "update produto"
+                + "      set nome   = ?,"
+                + "          unidadeDeMedida  = ?"
+                + "    where id     = ?";
+
+        Connection conexao = Conexao.getConexao();
+        try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setString(1, p.getNomeProduto());
+            ps.setString(2, p.getUnidadeDeMedida());
+            ps.setInt(3, p.getId());
+
+            return ps.executeUpdate() == 1;
+        }
+    }
 
 }

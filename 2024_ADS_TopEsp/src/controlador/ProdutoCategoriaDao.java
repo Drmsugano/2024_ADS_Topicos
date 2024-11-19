@@ -55,7 +55,41 @@ public class ProdutoCategoriaDao {
         }
         return lista;
     }
+    
+     public ProdutoCategoria getProdutoCategoria(int id) throws Exception {
+        Connection conexao = Conexao.getConexao();
+        String sql = "select * from produto_categoria where id = ?";
 
+        ProdutoCategoria obj = null;
+
+        try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setInt(1, id);
+
+            try ( java.sql.ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    obj = new ProdutoCategoria();
+                    obj.setId(rs.getInt("id"));
+                    obj.setNomeCategoria(rs.getString("nome"));
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return obj;
+    }
+
+       public boolean atualizar(ProdutoCategoria p) throws Exception {
+        String sql = "update produto_categoria"
+                + " set nome   = ?"
+                + " where id     = ?";
+
+        Connection conexao = Conexao.getConexao();
+        try ( PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ps.setString(1, p.getNomeCategoria());
+            ps.setInt(2, p.getId());
+            return ps.executeUpdate() == 1;
+        }
+    }
     public void excluir(Integer id) throws Exception {
         String sql = "DELETE FROM produto_categoria WHERE id = ?";
         Connection conexao = Conexao.getConexao();
