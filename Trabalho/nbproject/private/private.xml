@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/visao/TelaRestaurante.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/controlador/Conexao.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/visao/GrupoUsuarioAlterar.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/visao/GrupoUsuarioGerenciar.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/visao/ProdutoCadastrar.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/visao/GrupoUsuarioCadastrar.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/modelo/Produto.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/controlador/GrupoUsuarioDao.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/visao/TelaLogin.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/modelo/ProdutoCategoria.java</file>
+            <file>file:/home/drmsugano/Projetos/2024_ADS_Topicos/Trabalho/src/controlador/ProdutoDao.java</file>
+        </group>
+    </open-files>
+</project-private>
